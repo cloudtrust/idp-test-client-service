@@ -10,7 +10,8 @@ RUN dnf install -y java java-1.8.0-openjdk-devel git maven; dnf clean all; \
 
 #Build idp-test-client
 WORKDIR /opt/idp-test-client
-RUN	mvn clean package; \
+RUN	git checkout test; \
+	mvn clean package; \
         mkdir /opt/idp-test-client-run; \
 	mv target/IdPTestClient.jar /opt/idp-test-client-run/IdPTestClient.jar; \
 	chown -R SOresource:SOresource /opt/idp-test-client-run
