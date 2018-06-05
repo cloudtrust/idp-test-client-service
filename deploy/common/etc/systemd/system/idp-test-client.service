@@ -1,0 +1,12 @@
+[Unit]
+Description=pac4j/playframework-based SAML2 and OIDC resource for testing with keycloak
+After=network.target
+
+[Service]
+Type=simple
+User=SOresource
+Group=SOresource
+ExecStart=/opt/runIdpTestClient.sh
+
+[Install]
+WantedBy=multi-user.target
