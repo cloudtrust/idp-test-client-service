@@ -14,14 +14,15 @@ RUN	git checkout test; \
 	mvn clean package; \
         mkdir /opt/idp-test-client-run; \
 	mv target/IdPTestClient.jar /opt/idp-test-client-run/IdPTestClient.jar; \
-	cp /opt/idp-test-client-service/deploy/common/opt/idp-test-client-run/* /opt/idp-test-client-run/; \
 	chown -R SOresource:SOresource /opt/idp-test-client-run
 
 #config
 WORKDIR /opt/idp-test-client-service
 RUN install -v -o root -g root -m 644 -d /etc/systemd/system/idp-test-client.service.d; \
     install -v -o root -g root -m 644 deploy/common/etc/systemd/system/idp-test-client.service /etc/systemd/system/idp-test-client.service; \
-    install -v -o SOresource -g SOresource -m 755 deploy/common/opt/runIdPTestClient.sh /opt/runIdPTestClient.sh
+    install -v -o SOresource -g SOresource -m 755 deploy/common/opt/runIdPTestClient.sh /opt/runIdPTestClient.sh; \
+    install -v -o SOresource -g SOresource -m 644 deploy/common/opt/idp-test-client-run/fediz-config.xml /opt/idp-test-client-run/; \
+    install -v -o SOresource -g SOresource -m 644 deploy/common/opt/idp-test-client-run/fediz-config.xml /opt/idp-test-client-run/; \
 	
 #Enable service
 RUN systemctl enable idp-test-client.service
