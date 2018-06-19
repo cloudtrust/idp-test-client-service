@@ -14,6 +14,7 @@ RUN	git checkout test; \
 	mvn clean package; \
         mkdir /opt/idp-test-client-run; \
 	mv target/IdPTestClient.jar /opt/idp-test-client-run/IdPTestClient.jar; \
+	cp /opt/idp-test-client-service/deploy/common/opt/idp-test-client-run/* /opt/idp-test-client-run/; \
 	chown -R SOresource:SOresource /opt/idp-test-client-run
 
 #config
